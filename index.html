@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Mind Maze Extreme – טריוויה באקסטרים</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ניתן להחליף לכותרת/תיאור משלך -->
+    <meta name="description" content="מלחמת מוחות – Mind Maze Extreme. חוויית טריוויה אינטראקטיבית עם שלטים, מסכים ותחרות מטורפת לבתי ספר, ארגונים ואירועים.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #050816;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ==== HEADER ==== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 8, 22, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.6rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+
+        .logo-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, #ffdd55, #ff3f6c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        .logo-text-main {
+            font-size: 1rem;
+        }
+
+        .logo-text-sub {
+            font-size: 0.78rem;
+            opacity: 0.8;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        nav li a {
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        nav li a:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-cta {
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ff4b8b, #ffb347);
+            color: #111;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(255, 75, 139, 0.35);
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            filter: brightness(1.05);
+        }
+
+        /* ==== SECTIONS GENERAL ==== */
+        section {
+            padding: 3.5rem 1.2rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-subtitle {
+            color: #b4b4b4;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* ==== HERO ==== */
+        .hero {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+            background:
+                radial-gradient(circle at top right, rgba(0,255,234,0.18), transparent 55%),
+                radial-gradient(circle at bottom left, rgba(255,75,139,0.25), transparent 55%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-kicker {
+            font-size: 0.9rem;
+            color: #ffb347;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 3.1vw, 2.8rem);
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #ffdd55, #ff4b8b);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            color: #c2c2c2;
+            margin-bottom: 1.2rem;
+            max-width: 500px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .pill {
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-size: 0.78rem;
+            color: #d9d9d9;
+            background: rgba(5, 8, 22, 0.6);
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .btn-primary {
+            padding: 0.6rem 1.3rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff4b8b, #ffb347);
+            color: #111;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 30px rgba(255, 75, 139, 0.4);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.05);
+        }
+
+        .btn-secondary {
+            padding: 0.55rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: #f3f3f3;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .hero-note {
+            font-size: 0.8rem;
+            color: #a7a7a7;
+        }
+
+        .hero-card {
+            border-radius: 20px;
+            padding: 1.4rem;
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(8, 11, 31, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #ffdd55;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-score {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-score-label {
+            font-size: 0.75rem;
+            color: #bbbbbb;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1.1fr 1.2fr;
+            gap: 0.8rem;
+            font-size: 0.78rem;
+        }
+
+        .hero-stat-box {
+            padding: 0.6rem 0.7rem;
+            border-radius: 16px;
+            background: rgba(5, 8, 22, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-stat-label {
+            color: #b0b0b0;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-stat-value {
+            font-weight: 700;
+        }
+
+        .hero-float {
+            position: absolute;
+            inset-inline-end: -10px;
+            bottom: -10px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 221, 85, 0.95), rgba(255, 75, 139, 0.75));
+            opacity: 0.25;
+            filter: blur(3px);
+        }
+
+        /* ==== FEATURES ==== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.4rem;
+        }
+
+        .feature-card {
+            padding: 1.2rem;
+            border-radius: 18px;
+            background: rgba(9, 13, 36, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .feature-title {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-text {
+            font-size: 0.88rem;
+            color: #c9c9c9;
+        }
+
+        /* ==== PROGRAMS ==== */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.4rem;
+        }
+
+        .program-card {
+            padding: 1rem;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(19, 24, 53, 0.95), rgba(9, 9, 26, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .program-tag {
+            font-size: 0.72rem;
+            padding: 0.18rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            margin-bottom: 0.4rem;
+        }
+
+        .program-title {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .program-text {
+            font-size: 0.86rem;
+            color: #d4d4d4;
+            margin-bottom: 0.4rem;
+        }
+
+        .program-note {
+            font-size: 0.8rem;
+            color: #a9a9a9;
+        }
+
+        /* ==== STEPS ==== */
+        .steps-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .step {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            background: rgba(9, 13, 36, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ff4b8b, #ffb347);
+            color: #111;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ==== TESTIMONIAL ==== */
+        .testimonial-box {
+            padding: 1.3rem;
+            border-radius: 18px;
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05), rgba(7, 9, 27, 0.96));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 650px;
+        }
+
+        .testimonial-quote {
+            font-size: 0.95rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: #b5b5b5;
+        }
+
+        /* ==== CONTACT ==== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 2rem;
+        }
+
+        .contact-details {
+            font-size: 0.92rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-highlight {
+            padding: 0.9rem 1rem;
+            border-radius: 16px;
+            background: rgba(8, 15, 40, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            padding: 1rem;
+            border-radius: 18px;
+            background: rgba(9, 13, 36, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .form-row {
+            margin-bottom: 0.7rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+            color: #d4d4d4;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem 0.6rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(4, 6, 18, 0.95);
+            color: #f5f5f5;
+            font-family: inherit;
+            font-size: 0.88rem;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff4b8b;
+        }
+
+        .form-submit {
+            margin-top: 0.5rem;
+        }
+
+        /* ==== FOOTER ==== */
+        footer {
+            padding: 1.6rem 1.2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.8rem;
+            color: #a7a7a7;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.6rem;
+        }
+
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 900px) {
+            .hero-grid,
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-card {
+                order: -1;
+            }
+
+            nav ul {
+                display: none; /* אפשר בהמשך לבנות תפריט מובייל אם תרצה */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid,
+            .programs-grid,
+            .steps-list {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            section {
+                padding-inline: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-circle">MM</div>
+            <div>
+                <div class="logo-text-main">Mind Maze Extreme</div>
+                <div class="logo-text-sub">מלחמת מוחות – טריוויה באקסטרים</div>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#about">אודות</a></li>
+                <li><a href="#programs">תכניות</a></li>
+                <li><a href="#how">איך זה עובד</a></li>
+                <li><a href="#contact" class="nav-cta">דברו איתי</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+        <div class="section-inner hero-grid">
+            <div>
+                <div class="hero-kicker">חוויית טריוויה שלא הכרתם</div>
+                <h1 class="hero-title">
+                    <span>מלחמת מוחות</span> – Mind Maze Extreme<br>
+                    טריוויה אינטראקטיבית לכל אירוע
+                </h1>
+                <p class="hero-subtitle">
+                    תחרות טריוויה חיה עם שלטים, מסכים, מוזיקה ואנרגיה גבוהה.
+                    בתי ספר, ארגונים, עמותות, ישיבות וסמינרים – כולם נכנסים למבוך הידע.
+                </p>
+
+                <div class="hero-badges">
+                    <div class="pill">עד 300 משתתפים בו־זמנית</div>
+                    <div class="pill">שאלות מותאמות אישית</div>
+                    <div class="pill">הנחיה: חזקי רייך</div>
+                    <div class="pill">עברית / אנגלית</div>
+                </div>
+
+                <div class="hero-cta-row">
+                    <a href="#contact" class="btn-primary">קבעו תאריך לחוויה</a>
+                    <a href="#programs" class="btn-secondary">צפו בתכניות</a>
+                </div>
+
+                <p class="hero-note">
+                    מושלם לשבוע זהירות בדרכים, ימי גיבוש, נושא שנתי, מסיבות סיום, כנסים ועוד.
+                </p>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-card-tag">Live Trivia Dashboard</div>
+                <div class="hero-score">98,450</div>
+                <div class="hero-score-label">נקודות שצבר הקהל בשנה האחרונה ✨</div>
+
+                <div class="hero-stats">
+                    <div class="hero-stat-box">
+                        <div class="hero-stat-label">אולמות / אירועים</div>
+                        <div class="hero-stat-value">+150 בשנה</div>
+                        <div class="hero-stat-label">חוויית במה מלאה</div>
+                    </div>
+                    <div class="hero-stat-box">
+                        <div class="hero-stat-label">זמן ממוצע לאקשן</div>
+                        <div class="hero-stat-value">90 דק' טירוף ידע</div>
+                        <div class="hero-stat-label">שילוב מסכים, מוזיקה וקליקרים</div>
+                    </div>
+                </div>
+
+                <div class="hero-float"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="section-inner">
+            <h2 class="section-title">מה זה בעצם Mind Maze Extreme?</h2>
+            <p class="section-subtitle">
+                תכנית טריוויה אינטראקטיבית שמכניסה את המשתתפים לעולם של שאלות, הפתעות
+                ותחרות בריאה. כל משתתף מקבל שלט, רואה את שמו על המסך, מרגיש חלק מהבמה –
+                והקבוצה כולה חווה למידה חווייתית ובלתי נשכחת.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">קליקרים – שלטים אישיים</h3>
+                    <p class="feature-text">
+                        כל משתתף מקבל שלט הצבעה אישי. לוחצים, מצביעים, רואים את התוצאות בשידור חי על המסך – בלי אפליקציות, בלי הורדות, מתאים גם לקהל חרדי.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">תוכן מותאם במיוחד לכם</h3>
+                    <p class="feature-text">
+                        שאלות שמותאמות לנושא האירוע: זהירות בדרכים, הכשרה מקצועית, יהדות, חנוכה, חוסן נפשי, תיכונים, ישיבות, סמינרים, חברות ועוד.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">תחרות אישית וקבוצתית</h3>
+                    <p class="feature-text">
+                        גם כל אחד מול כל הקהל, וגם חלוקה לקבוצות לפי כיתות, מחוזות או צוותים.
+                        לוח ניקוד דינמי, זוכים, גמר גדול – ממש משחק טלוויזיה, רק אצלכם באולם.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs">
+        <div class="section-inner">
+            <h2 class="section-title">תכניות לדוגמה</h2>
+            <p class="section-subtitle">
+                אפשר להתאים כל תכנית לקהל שלכם – גיל, רמה, אופי, שפה ותוכן.
+                הנה כמה פורמטים פופולריים:
+            </p>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-tag">לבתי ספר</div>
+                    <div class="program-title">חידון נושא שנתי / שבוע זהירות בדרכים</div>
+                    <p class="program-text">
+                        תכנית מעוררת אדרנלין לכל השכבה: שאלות ידע, סרטונים, תמונות, שלבים,
+                        גמר חגיגי עם אלופי טריוויה – בשילוב מסרים חינוכיים מדויקים.
+                    </p>
+                    <p class="program-note">
+                        מתאים לחטיבות ביניים, תיכונים, ישיבות קטנות וסמינרים.
+                    </p>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-tag">לאירועי קהילה</div>
+                    <div class="program-title">מלחמת מוחות למשפחות ולקהילה</div>
+                    <p class="program-text">
+                        ערב קהילתי סביב חגים, אירועי זיכרון או גיבוש. כל הגילאים משתתפים ביחד,
+                        השאלות משלבות הומור, ידע יהודי וקטעי וידאו מיוחדים.
+                    </p>
+                    <p class="program-note">
+                        אפשרי באולמות, מתנ"סים, חצרות ישיבה וערבי התרמה.
+                    </p>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-tag">לחברות וארגונים</div>
+                    <div class="program-title">טריוויה ארגונית – גיבוש וצוותים</div>
+                    <p class="program-text">
+                        שאלות מותאמות לחברה, לערכים ולתחום הפעילות. שילוב עובדות על הארגון,
+                        עובדים, יעדים ותמונות מהשטח – לחיבור אמיתי לצוות.
+                    </p>
+                    <p class="program-note">
+                        מושלם לימי עיון, כנסים, השקות, ערבי צוות ו-Onboarding.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+        <div class="section-inner">
+            <h2 class="section-title">איך זה עובד בפועל?</h2>
+            <p class="section-subtitle">
+                התהליך פשוט ויעיל – ואתם מקבלים חוויה מקצועית מהשנייה הראשונה ועד כיבוי האורות.
+            </p>
+
+            <div class="steps-list">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        משוחחים יחד, מגדירים קהל יעד, מטרות, תאריך ומקום.
+                        מתכננים אורך תכנית ותמה מרכזית (נושא שנתי, בטיחות, חינוך וכו').
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        נבנית עבורכם בנק שאלות מותאם, כולל תמונות, סרטונים, סקרים והפתעות,
+                        הכל בסגנון ייחודי של "מלחמת מוחות".
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        מגיעים לאולם עם כל הציוד – שלטים (קליקרים), מסכים, מחשוב ומערכת חיווי.
+                        מעלים את הקהל על הגל, מנהלים תחרות, מכריזים על זוכים – ומשאירים טעם של עוד.
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="testimonial-box">
+                <div class="testimonial-quote">
+                    "התלמידים פשוט לא רצו ללכת הביתה. רמת מעורבות כזו עוד לא ראינו –
+                    גם למדו, גם נהנו, וגם יצאו עם מסרים חזקים ומדויקים."
+                </div>
+                <div class="testimonial-name">מנהלת חט"ב, מרכז הארץ</div>
+                <div class="testimonial-role">לאחר תכנית 'מלחמת מוחות' בנושא זהירות בדרכים</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-inner contact-grid">
+            <div>
+                <h2 class="section-title">בואו נקבע תאריך</h2>
+                <p class="section-subtitle">
+                    השאירו פרטים, וציינו סוג אירוע, מקום מועדף ומספר משתתפים – ונחזור אליכם עם הצעה מותאמת.
+                </p>
+
+                <div class="contact-highlight">
+                    <p><strong>הנחיה והפקה:</strong> חזקי רייך – "מלחמת מוחות"</p>
+                    <p>מתאים לקהל דתי/חרדי וכללי, בשילוב הקפדה מלאה על תכנים מותאמים.</p>
+                </div>
+
+                <div class="contact-details">
+                    <!-- עדכן כאן לפרטים האמיתיים שלך -->
+                    <p><strong>טלפון / וואטסאפ:</strong> 050-000-0000</p>
+                    <p><strong>אימייל:</strong> <a href="mailto:info@mindmazeextreme.com">info@mindmazeextreme.com</a></p>
+                    <p><strong>אתר:</strong> mindmazeextreme.com (ניתן לשנות בהתאם לדומיין בגודדי)</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="contact-form">
+                    <!-- טופס פשוט – שולח למייל דרך mailto (לא חובה להשתמש; אפשר להסתיר) -->
+                    <form action="mailto:info@mindmazeextreme.com" method="post" enctype="text/plain">
+                        <div class="form-row">
+                            <label for="name">שם מלא</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="phone">טלפון</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-row">
+                            <label for="email">אימייל</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-row">
+                            <label for="details">פרטים על האירוע</label>
+                            <textarea id="details" name="details" placeholder="סוג אירוע, מקום, תאריך משוער, מספר משתתפים וכו'"></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn-primary">שלח פרטים</button>
+                        </div>
+                        <p style="font-size:0.75rem;color:#999;margin-top:0.4rem;">
+                            ניתן גם פשוט לשלוח וואטסאפ / להתקשר לטלפון המופיע משמאל.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>© <span id="year"></span> Mind Maze Extreme – מלחמת מוחות. כל הזכויות שמורות.</div>
+        <div>פיתוח וקריאייטיב: חזקי רייך</div>
+    </div>
+</footer>
+
+<script>
+    // עדכון שנה אוטומטי
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
